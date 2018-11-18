@@ -1,0 +1,240 @@
+###############################################################################
+#
+# IAR ELF Linker V8.30.2.160/W32 for ARM                  17/Nov/2018  15:02:00
+# Copyright 2007-2018 IAR Systems AB.
+#
+#    Output file  =  \\Mac\Home\Desktop\HexapodFW\Debug\Exe\LEDBlinker.out
+#    Map file     =  \\Mac\Home\Desktop\HexapodFW\Debug\List\LEDBlinker.map
+#    Command line =  
+#        -f C:\Users\vladik\AppData\Local\Temp\EWCF2B.tmp
+#        (\\Mac\Home\Desktop\HexapodFW\Debug\Obj\ADC.o
+#        \\Mac\Home\Desktop\HexapodFW\Debug\Obj\cstartup_M.o
+#        \\Mac\Home\Desktop\HexapodFW\Debug\Obj\GPIO.o
+#        \\Mac\Home\Desktop\HexapodFW\Debug\Obj\I2C.o
+#        \\Mac\Home\Desktop\HexapodFW\Debug\Obj\main.o
+#        \\Mac\Home\Desktop\HexapodFW\Debug\Obj\PCA9685.o
+#        \\Mac\Home\Desktop\HexapodFW\Debug\Obj\Timer.o --no_out_extension -o
+#        \\Mac\Home\Desktop\HexapodFW\Debug\Exe\LEDBlinker.out --redirect
+#        _Printf=_PrintfFullNoMb --redirect _Scanf=_ScanfFullNoMb --map
+#        \\Mac\Home\Desktop\HexapodFW\Debug\List\LEDBlinker.map --config
+#        "C:\Program Files (x86)\IAR Systems\Embedded Workbench
+#        8.1\arm\config\linker\TexasInstruments\TM4C123GH6.icf" --semihosting
+#        --entry __iar_program_start --vfe --text_out locale)
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor       = *
+__SystemLibrary = DLib
+__dlib_version  = 6
+
+
+*******************************************************************************
+*** HEAP SELECTION
+***
+
+The basic heap was selected because some modules are built with
+size limitations (and not runtime checking), and --advanced_heap
+was not specified.
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A0":  place at 0x0 { ro section .intvec };
+"P1":  place in [from 0x0 to 0x3'ffff] { ro };
+define block CSTACK with size = 4K, alignment = 8 { };
+define block HEAP with size = 8K, alignment = 8 { };
+"P2":  place in [from 0x2000'0000 to 0x2000'7fff] {
+          rw, block CSTACK, block HEAP };
+
+  Section          Kind         Address    Size  Object
+  -------          ----         -------    ----  ------
+"A0":                                      0xc0
+  .intvec          const            0x0    0xc0  cstartup_M.o [1]
+                                 - 0xc0    0xc0
+
+"P1":                                     0xc12
+  .text            ro code         0xc0   0x246  DblDiv.o [3]
+  .text            ro code        0x306    0x3a  zero_init3.o [4]
+  .text            ro code        0x340   0x1a2  DblMul.o [3]
+  .text            ro code        0x4e2     0x2  cstartup_M.o [1]
+  .text            ro code        0x4e4   0x19c  ADC.o [1]
+  .text            ro code        0x680    0x48  FltToDbl.o [3]
+  .text            ro code        0x6c8    0x68  DblToFlt.o [3]
+  .text            ro code        0x730    0xe2  DblSub.o [3]
+  .text            ro code        0x812     0x2  cstartup_M.o [1]
+  .text            ro code        0x814   0x17a  DblAdd.o [3]
+  .text            ro code        0x98e     0x2  cstartup_M.o [1]
+  .text            ro code        0x990    0x50  GPIO.o [1]
+  .text            ro code        0x9e0    0x64  Timer.o [1]
+  .text            ro code        0xa44   0x174  I2C.o [1]
+  .text            ro code        0xbb8    0x5c  main.o [1]
+  .text            ro code        0xc14    0x28  data_init.o [4]
+  .text            ro code        0xc3c    0x22  fpinit_M.o [3]
+  .iar.init_table  const          0xc60    0x10  - Linker created -
+  .text            ro code        0xc70     0x2  cstartup_M.o [1]
+  .text            ro code        0xc74    0x1e  cmain.o [4]
+  .text            ro code        0xc92     0x4  low_level_init.o [2]
+  .text            ro code        0xc96     0x4  exit.o [2]
+  .text            ro code        0xc9a     0x2  cstartup_M.o [1]
+  .text            ro code        0xc9c     0xa  cexit.o [4]
+  .text            ro code        0xca6     0x2  cstartup_M.o [1]
+  .text            ro code        0xca8    0x14  exit.o [5]
+  .text            ro code        0xcbc    0x10  cstartup_M.o [1]
+  .text            ro code        0xccc     0x2  cstartup_M.o [1]
+  .text            ro code        0xcce     0x2  cstartup_M.o [1]
+  .text            ro code        0xcd0     0x2  cstartup_M.o [1]
+  .rodata          const          0xcd2     0x0  zero_init3.o [4]
+                                - 0xcd2   0xc12
+
+"P2", part 1 of 2:                          0x4
+  .bss             zero     0x2000'0000     0x4  Timer.o [1]
+                          - 0x2000'0004     0x4
+
+"P2", part 2 of 2:                       0x1000
+  CSTACK                    0x2000'0008  0x1000  <Block>
+    CSTACK         uninit   0x2000'0008  0x1000  <Block tail>
+                          - 0x2000'1008  0x1000
+
+Unused ranges:
+
+         From           To      Size
+         ----           --      ----
+        0xcd2     0x3'ffff  0x3'f32e
+  0x2000'0004  0x2000'0007       0x4
+  0x2000'1008  0x2000'7fff    0x6ff8
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address      Size
+          -------      ----
+Zero (__iar_zero_init3)
+    1 destination range, total size 0x4:
+          0x2000'0000   0x4
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module            ro code  ro data  rw data
+    ------            -------  -------  -------
+command line/config:
+    -------------------------------------------
+    Total:
+
+\\Mac\Home\Desktop\HexapodFW\Debug\Obj: [1]
+    ADC.o                 412
+    GPIO.o                 80
+    I2C.o                 372
+    Timer.o               100                 4
+    cstartup_M.o           34      192
+    main.o                 92
+    -------------------------------------------
+    Total:              1 090      192        4
+
+dl7M_tln.a: [2]
+    exit.o                  4
+    low_level_init.o        4
+    -------------------------------------------
+    Total:                  8
+
+m7M_tls.a: [3]
+    DblAdd.o              378
+    DblDiv.o              582
+    DblMul.o              418
+    DblSub.o              226
+    DblToFlt.o            104
+    FltToDbl.o             72
+    fpinit_M.o             34
+    -------------------------------------------
+    Total:              1 814
+
+rt7M_tl.a: [4]
+    cexit.o                10
+    cmain.o                30
+    data_init.o            40
+    zero_init3.o           58
+    -------------------------------------------
+    Total:                138
+
+shb_l.a: [5]
+    exit.o                 20
+    -------------------------------------------
+    Total:                 20
+
+    Gaps                    2        2
+    Linker created                  16    4 096
+-----------------------------------------------
+    Grand Total:        3 072      210    4 100
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                       Address   Size  Type      Object
+-----                       -------   ----  ----      ------
+.iar.init_table$$Base         0xc60          --   Gb  - Linker created -
+.iar.init_table$$Limit        0xc70          --   Gb  - Linker created -
+?main                         0xc75         Code  Gb  cmain.o [4]
+ADC0_Handler                  0x4e5  0x164  Code  Gb  ADC.o [1]
+CSTACK$$Base            0x2000'0008          --   Gb  - Linker created -
+CSTACK$$Limit           0x2000'1008          --   Gb  - Linker created -
+GPIO_LED_OFF                  0x9cd    0x8  Code  Gb  GPIO.o [1]
+GPIO_LED_ON                   0x9c3    0xa  Code  Gb  GPIO.o [1]
+I2C_InitPort1                 0xa45   0x3a  Code  Gb  I2C.o [1]
+I2C_Read                      0xb3b   0x48  Code  Gb  I2C.o [1]
+I2C_WriteByte                 0xa7f   0x2e  Code  Gb  I2C.o [1]
+I2C_WriteBytes                0xaad   0x8e  Code  Gb  I2C.o [1]
+PortF_Handler                 0x991   0x32  Code  Gb  GPIO.o [1]
+Region$$Table$$Base           0xc60          --   Gb  - Linker created -
+Region$$Table$$Limit          0xc70          --   Gb  - Linker created -
+TIMEDOUT                0x2000'0000    0x4  Data  Lc  Timer.o [1]
+TIMER_ChangeSpeed             0x9f3   0x36  Code  Gb  Timer.o [1]
+TimerA_Handler                0x9e1   0x12  Code  Gb  Timer.o [1]
+__aeabi_d2f                   0x6c9         Code  Gb  DblToFlt.o [3]
+__aeabi_dadd                  0x815         Code  Gb  DblAdd.o [3]
+__aeabi_ddiv                   0xc1         Code  Gb  DblDiv.o [3]
+__aeabi_dmul                  0x341         Code  Gb  DblMul.o [3]
+__aeabi_dsub                  0x731         Code  Gb  DblSub.o [3]
+__aeabi_f2d                   0x681         Code  Gb  FltToDbl.o [3]
+__cmain                       0xc75         Code  Gb  cmain.o [4]
+__exit                        0xca9   0x14  Code  Gb  exit.o [5]
+__iar_dadd                    0x741         Code  Gb  DblSub.o [3]
+__iar_data_init3              0xc15   0x28  Code  Gb  data_init.o [4]
+__iar_dsub                    0x825         Code  Gb  DblAdd.o [3]
+__iar_dsubStart               0x837         Code  Gb  DblAdd.o [3]
+__iar_init_vfp                0xc3d         Code  Gb  fpinit_M.o [3]
+__iar_program_start           0xcbd   0x10  Code  Gb  cstartup_M.o [1]
+__iar_zero_init3              0x307   0x3a  Code  Gb  zero_init3.o [4]
+__low_level_init              0xc93    0x4  Code  Gb  low_level_init.o [2]
+__vector_table                  0x0   0xc0  Data  Gb  cstartup_M.o [1]
+_call_main                    0xc81         Code  Gb  cmain.o [4]
+_exit                         0xc9d         Code  Gb  cexit.o [4]
+_main                         0xc8f         Code  Gb  cmain.o [4]
+exit                          0xc97    0x4  Code  Gb  exit.o [2]
+main                          0xbb9   0x5c  Code  Gb  main.o [1]
+
+
+[1] = \\Mac\Home\Desktop\HexapodFW\Debug\Obj
+[2] = dl7M_tln.a
+[3] = m7M_tls.a
+[4] = rt7M_tl.a
+[5] = shb_l.a
+
+  3 072 bytes of readonly  code memory
+    210 bytes of readonly  data memory
+  4 100 bytes of readwrite data memory
+
+Errors: none
+Warnings: none
